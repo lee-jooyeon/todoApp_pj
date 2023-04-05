@@ -46,13 +46,13 @@ export default function ToDoContainer() {
   const filtered = getFilterTodo(todos, filter);
 
   return (
-    <section>
+    <section className='bg-main-black'>
       <ToDoHeader
         filter={filter}
         onChangeFilter={setFilter}
         filters={filters}
       />
-      <ul>
+      <ul className='mx-5'>
         {filtered.map(data => (
           <ToDoList
             key={data.id}
