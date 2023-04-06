@@ -12,8 +12,12 @@
   display: none;
 }
 
-html {min-width:100%;height:100%;overflow-y:auto;}
-body {min-width:100%;height:100%; font-family: -apple-system, SpoqaHanSansNeo, sans-serif !important;line-height:100%;font-weight:400; background: #1c1c27;}
+html.dark {
+  @apply dark:bg-main-black;
+}
+
+html {min-width:100%;height:100%;overflow-y:auto; background: #f5f5f5;}
+body {min-width:100%;height:100%; font-family: -apple-system, SpoqaHanSansNeo, sans-serif !important;line-height:100%;font-weight:400;}
 
 html,
 body,
@@ -208,11 +212,11 @@ button {
 
 /* Header */
 .filter {
-  @apply py-8 text-center uppercase py-2
+  @apply py-8 text-center uppercase py-2  dark:text-main-white text-main-black;
 }
 
 .filter_tab {
-  @apply flex-[0_0_33.33%]  text-main-white; 
+  @apply flex-[0_0_33.33%]; 
 }
 
 .focus {
@@ -225,7 +229,7 @@ button {
   animation: movingSide 0.3s ease-out;
 }
 .input_box {
-  @apply w-80 h-16 border-4 border-solid border-dark-yellow bg-[#3b3129]/[.8] rounded-full text-dark-yellow;
+  @apply w-64 h-16 border-4 border-solid border-dark-yellow bg-[#3b3129]/[.8] rounded-full text-dark-yellow;
 }
 
 .plus_btn {

@@ -37,7 +37,7 @@ export default function ToDoList({ todo, onDelete, onUpdate, onEdit }) {
   }, [edit]);
 
   return (
-    <li className='relative bg-gray-black py-5 px-5 mb-3 rounded-lg'>
+    <li className='relative bg-main-gray dark:bg-gray-black py-5 px-5 mb-3 rounded-lg'>
      <input
         type='checkbox'
         id={id}

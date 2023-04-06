@@ -46,7 +46,7 @@ export default function ToDoContainer() {
   const filtered = getFilterTodo(todos, filter);
 
   return (
-    <section className='bg-main-black'>
+    <section>
       <ToDoHeader
         filter={filter}
         onChangeFilter={setFilter}
