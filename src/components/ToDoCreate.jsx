@@ -26,14 +26,14 @@ export default function ToDoCreate({ onAdd }) {
   };
 
   const onClickHandler = () => {
-    setOnOpen(!onOpen);
+    setOnOpen(prev => !prev);
   };
 
   useEffect(() => {
     if(onOpen){
       textCursor.current.focus();
     }
-  }, [onOpen]);
+  }, [onOpen])
 
   // 마운트되었을 때 localStorage 데이터 불러오기
   // useEffect(() => {

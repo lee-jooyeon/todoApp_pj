@@ -22,13 +22,9 @@ export default function ToDoList({ todo, onDelete, onUpdate, onEdit }) {
     setNewText(e.target.value);
   };
 
-  const handleEdit = () => {
-    setEdit(true);
-  };
-
   const submitEdit = () => {
+    setEdit(prev => !prev);
     onEdit({ ...todo, text: newText });
-    setEdit(false);
   };
 
   useEffect(() => {
@@ -73,7 +69,7 @@ export default function ToDoList({ todo, onDelete, onUpdate, onEdit }) {
       {edit ? (
         <button onClick={submitEdit}><MdOutlineCheck className='edit_btn' /></button>
       ) : (
-        <button onClick={handleEdit}><MdModeEditOutline className='edit_btn'/></button>
+        <button onClick={submitEdit}><MdModeEditOutline className='edit_btn'/></button>
       )}
       <button onClick={handleDelete} className="absolute top-6 right-7">
         <FaRegTrashAlt className=' text-main-white hover:text-main-red' />
