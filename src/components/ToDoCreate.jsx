@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState   } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { MdAdd, MdClose } from 'react-icons/md';
 
-export default function ToDoCreate({ onAdd }) {
+export default function ToDoCreate({ onAdd, list, setList }) {
   const [text, setText] = useState('');
   const [onOpen, setOnOpen] = useState(false);
   const textCursor = useRef();
@@ -16,14 +16,16 @@ export default function ToDoCreate({ onAdd }) {
     if(text.trim().length === 0){
       return;
     } else {
-      onAdd({
+     onAdd({
         id: uuidv4(),
         text,
         status: 'Active'
       });
+      console.log(list);
+      localStorage.setItem('todos', JSON.stringify(list));
     }
     setText('');
-  };
+  };  
 
   const onClickHandler = () => {
     setOnOpen(prev => !prev);
@@ -33,19 +35,7 @@ export default function ToDoCreate({ onAdd }) {
     if(onOpen){
       textCursor.current.focus();
     }
-  }, [onOpen])
-
-  // 마운트되었을 때 localStorage 데이터 불러오기
-  // useEffect(() => {
-  //   const localItems = localStorage.getItem('todolists');
-  //   if (localItems) {
-  //     onAddHandler(JSON.parse(localItems));
-  //   }
-  //   const localId = localStorage.getItem('id');
-  //   if (localId) {
-  //     setId(parseInt(localId) + 1);
-  //   }
-  // }, []);
+  }, [onOpen]);
 
   return (
     <div>

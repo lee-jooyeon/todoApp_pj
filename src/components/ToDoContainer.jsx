@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToDoCreate from './ToDoCreate';
 import ToDoHeader from './ToDoHeader';
 import ToDoList from './ToDoList';
@@ -6,23 +6,7 @@ import ToDoList from './ToDoList';
 const filters = ['All', 'Active', 'Complete'];
 export default function ToDoContainer() {
   const [filter, setFilter] = useState('All');
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      status: 'Active',
-      text: '공부하기',
-    },
-    {
-      id: 2,
-      status: 'Active',
-      text: '책읽기',
-    },
-    {
-      id: 3,
-      status: 'Active',
-      text: '요리하기',
-    },
-  ]);
+  const [todos, setTodos] = useState(() => readTodosFromLocalStorage());
 
   // todo 리스트 추가
   const onAdd = todo => {
@@ -45,15 +29,19 @@ export default function ToDoContainer() {
 
   const filtered = getFilterTodo(todos, filter);
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  },[]);
+
   return (
-    <section>
+    <section className='pb-5'>
       <ToDoHeader
         filter={filter}
         onChangeFilter={setFilter}
         filters={filters}
       />
       <ul className='mx-5'>
-        {filtered.map(data => (
+        {filtered.slice(0, 8).map(data => (
           <ToDoList
             key={data.id}
             todo={data}
@@ -75,4 +63,9 @@ function getFilterTodo(todos, filter) {
     return todos;
   }
   return todos.filter(todo => todo.status === filter);
+}
+
+function readTodosFromLocalStorage(){
+  const todos = localStorage.getItem('todos');
+  return todos ? JSON.parse(todos) : [];
 }
