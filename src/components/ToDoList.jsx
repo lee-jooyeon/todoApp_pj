@@ -37,15 +37,18 @@ export default function ToDoList({ todo, onDelete, onUpdate, onEdit }) {
   }, [edit]);
 
   return (
-    <li className='relative bg-main-gray dark:bg-gray-black py-5 px-5 mb-3 rounded-lg'>
+    <li className='relative bg-[#f7bc48] dark:bg-gray-black py-5 px-5 mb-3 rounded-lg'>
      <input
         type='checkbox'
         id={id}
         checked={status === 'Complete'}
         onChange={handleChange}
-        className='relative peer h-5 w-5 appearance-none rounded-md checked:border-dark-yellow checked:bg-dark-yellow checked:before:bg-dark-yellow  dark:ring-offset-gray-800 focus:ring dark:bg-gray-700 dark:border-gray-600 align-text-top cursor-pointer'
+        className='relative peer h-5 w-5 appearance-none rounded-md align-text-top cursor-pointer
+        checked:border-main-white checked:bg-main-white checked:before:bg-main-white bg-main-white
+        dark:checked:border-dark-yellow dark:checked:bg-dark-yellow dark:checked:before:bg-dark-yellow 
+        dark:ring-offset-gray-800 focus:ring dark:bg-gray-700 dark:border-gray-600'
       />
-      <div className="pointer-events-none absolute top-6 left-6 text-main-white opacity-0 peer-checked:opacity-100">
+      <div className="pointer-events-none absolute top-6 left-6 dark:text-main-white text-dark-yellow opacity-0 peer-checked:opacity-100">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-3 w-3"
@@ -62,7 +65,7 @@ export default function ToDoList({ todo, onDelete, onUpdate, onEdit }) {
         </svg>
       </div>
       {edit ? (
-        <input type='text' value={newText} onChange={handleEditChange} ref={textValue} className='text-dark-yellow bg-transparent border-b-4 border-dark-yellow'/>
+        <input type='text' value={newText} onChange={handleEditChange} ref={textValue} className='text-main-white dark:text-dark-yellow bg-transparent border-b-4 border-dark-yellow'/>
       ) : (
         <label className={status === 'Complete' ? 'text text_checked' : 'text'} htmlFor={id}>{text}</label>
       )}

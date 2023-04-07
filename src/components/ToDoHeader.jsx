@@ -12,14 +12,14 @@ export default function Header({ filters, filter, onChangeFilter }) {
   const day = new Date().toLocaleDateString('en-US', {weekday: 'long'});
 
   return (
-    <header className='pt-8 pb-8 px-1'>
-      <button onClick={darkToggleHanlder}> 
-        {!darkMode && <HiMoon />}
-        {darkMode && <HiSun />}
+    <header className='pt-16 pb-8 px-1'>
+      <button onClick={darkToggleHanlder} className='absolute top-5 left-3'> 
+        {!darkMode && <HiMoon className='darkmode_icon text-[#f7bc48]'/>}
+        {darkMode && <HiSun className='darkmode_icon text-main-white' />}
       </button>
       <ul className='flex mb-6'>
         {filters.map((value, index) => (
-          <li key={index} className={filter === value? 'focus filter' : 'filter_tab filter'} onClick={() => onChangeFilter(value)}>
+          <li key={index} className={filter === value? 'focus filter' : 'filter'} onClick={() => onChangeFilter(value)}>
            {value}
           </li>
         ))}
